@@ -1,4 +1,4 @@
-# Httpeezy: http without the hassle
+# Httpz: http without the hassle
 
 ## What this package does for you
 
@@ -18,10 +18,10 @@ type ExampleResponse struct {
 Step 2: Construct your request
 
 ```
-req := httpeezy.GetRequest{
+req := httpz.GetRequest{
     URL: "http://localhost:8080/example",
-    Headers: []httpeezy.Header{
-        httpeezy.Header{ Key: "Authorization", Value: "Bearer " + auth_token}
+    Headers: []httpz.Header{
+        httpz.Header{ Key: "Authorization", Value: "Bearer " + auth_token}
     }
 }
 ```
@@ -29,7 +29,7 @@ req := httpeezy.GetRequest{
 Step 3: Retrieve a response or an error
 
 ```
-resp, err := httpeezy.SendGetRequest[ExampleResponse](req)
+resp, err := httpz.SendGetRequest[ExampleResponse](req)
 if err != nil {
     // handle error
 }
@@ -41,4 +41,4 @@ Step 4: Profit
 foo := resp.Foo
 ```
 
-In addition to the errors returned from the send functions, the specific step at which the error occurred will also be logged, i.e. request parsing, status check, response parsing, etc.
+In addition to the errors returned from the send functions, the specific step at which the error occurred will also be logged (i.e. request parsing, status check, response parsing, etc.) along with some useful information about the unexpected data causing the failure.

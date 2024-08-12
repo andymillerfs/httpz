@@ -1,4 +1,4 @@
-package httpeezy
+package httpz
 
 import (
 	"bytes"

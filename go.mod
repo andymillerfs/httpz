@@ -1,5 +1,4 @@
-module github.com/andythedishwasher/httpeezy
+module github.com/andymillerfs/httpz
 
 go 1.22.4
 
-replace github.com/andythedishwasher/httpeezy => ./
