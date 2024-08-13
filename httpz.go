@@ -67,7 +67,14 @@ func SendPostRequest[T any](req PostRequest) (T, error) {
 		return null, err
 	}
 
-	resp, err := client.Post(req.URL, "application/json", bytes.NewBuffer(reqBody))
+	request := &http.Request{
+		Method: "POST",
+		URL:    reqURL,
+		Header: reqHeaders,
+		Body:   io.NopCloser(bytes.NewBuffer(reqBody)),
+	}
+
+	resp, err := client.Do(request)
 	if err != nil {
 		log.Println("error sending request", err)
 		var null T
@@ -116,7 +123,13 @@ func SendGetRequest[T any](req GetRequest) (T, error) {
 	reqHeaders.Set("Content-Type", "application/json")
 	reqHeaders.Set("Accept", "application/json")
 
-	resp, err := client.Get(req.URL)
+	request := &http.Request{
+		Method: "GET",
+		URL:    reqURL,
+		Header: reqHeaders,
+	}
+
+	resp, err := client.Do(request)
 	if err != nil {
 		log.Println("error sending request", err)
 		var null T
